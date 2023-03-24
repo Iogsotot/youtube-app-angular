@@ -1,4 +1,4 @@
-export default interface YoutubeModel {
+export interface YoutubeModel {
   kind: string;
   etag: string;
   pageInfo: PageInfoModel;
@@ -44,11 +44,11 @@ interface ThumbnailModel {
 }
 
 const enum ThumbnailsType {
-  Default = "default",
-  Medium = "medium",
-  High = "high",
-  Standard = "standard",
-  Maxres = "maxres"
+  Default = 'default',
+  Medium = 'medium',
+  High = 'high',
+  Standard = 'standard',
+  Maxres = 'maxres',
 }
 
 type ThumbnailsModel = {

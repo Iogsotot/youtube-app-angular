@@ -1,21 +1,20 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import AppRoutingModule from "./app-routing.module";
-import AppComponent from "./app.component";
-import HeaderComponent from "./core/header/header.component";
-import SearchComponent from "./shared/search/search.component";
-import FooterComponent from "./core/footer/footer.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from '.';
+import { HeaderComponent, FooterComponent } from './core';
+import { SearchComponent } from './shared/search';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    SearchComponent,
+    AppComponent, 
+    HeaderComponent, 
+    SearchComponent, 
     FooterComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export default class AppModule {}
+export class AppModule {}
