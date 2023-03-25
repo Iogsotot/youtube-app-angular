@@ -1,6 +1,7 @@
-<app-header></app-header>
+<app-header
+  (filterOpenChange)="onFilterOpenChange($event)"></app-header>
 
-<app-filter></app-filter>
+<app-filter [isOpen]="isFilterOpen"></app-filter>
 <app-search-result></app-search-result>
 
 <router-outlet></router-outlet>

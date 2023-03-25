@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent {
+  isOpen = false;
+
   cards = [null, null, null]; // прокинуть сюда моковые данные
 }
