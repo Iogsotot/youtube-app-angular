@@ -1,10 +1,20 @@
-<div>Card</div>
-<p>
-  Video thumbnail
-  Views count
-  Likes count
-  Dislikes count
-  Comments count
-  Video title
-  "More button"
-</p>
+<mat-card class="card">
+    <mat-card-content>
+      <img src={{card?.snippet?.thumbnails?.default?.url}} alt="thumbnails" srcset="">
+      <div>Views count: {{ card?.statistics?.viewCount }}</div>
+      <div>Likes count: {{ card?.statistics?.likeCount }}</div>
+      <div> Dislikes count: {{ card?.statistics?.dislikeCount}}</div>
+      <div>Comments count: {{ card?.statistics?.commentCount }}</div>
+      <div>Video title:: {{ card?.snippet?.title }}</div>
+      <button>More...</button>
+    </mat-card-content>
+
+  <!-- почему не работает? undefined -->
+  <!-- <div>Video thumbnail: {{ thumbnail }}</div>
+  <div>Views count: {{ viewsCount }}</div>
+  <div>Likes count: {{ likesCount }}</div>
+  <div> Dislikes count: {{ dislikesCount}}</div>
+  <div>Comments count: {{ commentsCount }}</div>
+  <div>Video title:: {{ title }}</div> -->
+
+</mat-card>

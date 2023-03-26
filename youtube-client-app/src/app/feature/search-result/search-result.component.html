@@ -1,8 +1,7 @@
-
-<div *ngIf="isOpen" >
-  Search results block
-  <div *ngFor="let card of cards">
-    <app-card></app-card>
-    <!-- <app-card [title]="card.title" [description]="card.description"></app-card> -->
-  </div>
+<div class="search-result">
+  <ng-container *ngIf="cards">
+    <div *ngFor="let card of cards">
+      <app-card [card]="card"></app-card>
+    </div>
+  </ng-container>
 </div>

@@ -1,8 +1,7 @@
 <div class="header">
   <app-logo class="header_logo"></app-logo>
-  <app-search class="header_search"></app-search>
-  <button mat-mini-fab color="primary" class="filter-button" 
-  (click)="toggleFilter()">
+  <app-search class="header_search" (hassearchResultChange)="onSearchResultChange($event)"></app-search>
+  <button mat-mini-fab color="primary" class="filter-button" (click)="toggleFilter()">
     <mat-icon>tune</mat-icon>
   </button>
   <app-login class="header_login"></app-login>

@@ -1,7 +1,5 @@
-<app-header
-  (filterOpenChange)="onFilterOpenChange($event)"></app-header>
-
+<app-header (filterOpenChange)="onFilterOpenChange($event)"
+  (searchResultChange)="onsearchResultChange($event)"></app-header>
 <app-filter [isOpen]="isFilterOpen"></app-filter>
-<app-search-result></app-search-result>
-
+<app-search-result [cards]="youtubeItems"></app-search-result>
 <router-outlet></router-outlet>

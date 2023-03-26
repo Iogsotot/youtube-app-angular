@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
 
 @Component({
   selector: 'app-search-result',
@@ -6,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent {
-  isOpen = false;
-
-  cards = [null, null, null]; // прокинуть сюда моковые данные
+  @Input()
+  cards: YoutubeResponseItemModel[] | null = null;
 }
