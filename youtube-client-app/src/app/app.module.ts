@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from '.';
@@ -26,17 +23,13 @@ import { LoginComponent } from './feature/login/login.component';
     FilterComponent,
     SearchResultComponent,
     LogoComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
+    BrowserModule, 
+    AppRoutingModule, 
+    BrowserAnimationsModule, 
+    MaterialModule],
   providers: [],
   bootstrap: [AppComponent],
 })
