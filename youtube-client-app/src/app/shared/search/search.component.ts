@@ -15,7 +15,7 @@ export class SearchComponent {
   hasSearchResult = false;
 
   @Output()
-  hassearchResultChange = new EventEmitter<YoutubeResponseItemModel[] | null>();
+  searchResultChange = new EventEmitter<YoutubeResponseItemModel[] | null>();
 
   getYoutubeData(event: Event) {
     event.preventDefault();
@@ -23,6 +23,6 @@ export class SearchComponent {
 
     // if promise вернул валидные значение, то true и пускать данные дальше
     this.hasSearchResult = true;
-    this.hassearchResultChange.emit(this.youtubeData.items);
+    this.searchResultChange.emit(this.youtubeData.items);
   }
 }

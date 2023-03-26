@@ -1,5 +1,9 @@
-<app-header (filterOpenChange)="onFilterOpenChange($event)"
-  (searchResultChange)="onsearchResultChange($event)"></app-header>
-<app-filter [isOpen]="isFilterOpen"></app-filter>
-<app-search-result [cards]="youtubeItems"></app-search-result>
+<app-header 
+  (filterOpenChange)="onFilterOpenChange($event)"
+  (searchResultChange)="onSearchResultChange($event)"
+  ></app-header>
+<app-filter 
+ [isOpen]="isFilterOpen" 
+ (sortChange)="onSortChange($event)"></app-filter>
+<app-search-result [cards]="youtubeItems" [sort]="sort"></app-search-result>
 <router-outlet></router-outlet>

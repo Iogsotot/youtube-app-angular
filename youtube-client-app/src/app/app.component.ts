@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SortFieldEnum, SortTypeEnum } from './models/sortResult.model';
 import { YoutubeResponseItemModel } from './models/youtube.model';
 
 @Component({
@@ -17,11 +18,18 @@ export class AppComponent {
 
   youtubeItems: YoutubeResponseItemModel[] | null = null;
 
+  sort: any = null;
+
+  // sort object
+  onSortChange(value: { type: SortTypeEnum; field: SortFieldEnum }) {
+    this.sort = value;
+  }
+
   onFilterOpenChange(value: boolean) {
     this.isFilterOpen = value;
   }
 
-  onsearchResultChange(value: YoutubeResponseItemModel[] | null) {
+  onSearchResultChange(value: YoutubeResponseItemModel[] | null) {
     this.youtubeItems = value;
   }
 }

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { SortFieldEnum, SortTypeEnum } from 'src/app/models/sortResult.model';
 
 @Component({
   selector: 'app-filter',
@@ -11,11 +12,31 @@ export class FilterComponent {
   // Sorting should work both in the direction of decreasing values and in the direction of increasing values
   // Using a pipe, filter search results by value that a user types in the input
 
+  SortTypeEnum = SortTypeEnum;
+
+  SortFieldEnum = SortFieldEnum;
+
   sortValue = 'tag?';
 
   onWordSort(e: Event) {
-    // менять response.items по нужной сортировке
     console.log(this.sortValue, e);
+  }
+
+  sort: { type: SortTypeEnum; field: SortFieldEnum } = {
+    type: SortTypeEnum.DESC,
+    field: SortFieldEnum.VIEW,
+  };
+
+  @Output()
+  sortChange = new EventEmitter<{ type: SortTypeEnum; field: SortFieldEnum }>();
+
+  handleSortChange(type: SortTypeEnum, field: SortFieldEnum) {
+    this.sort = {
+      type,
+      field,
+    };
+    console.log(this.sort);
+    this.sortChange.emit(this.sort);
   }
 
   @Input()

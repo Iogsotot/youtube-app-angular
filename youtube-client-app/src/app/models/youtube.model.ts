@@ -55,7 +55,7 @@ type ThumbnailsModel = {
   [key in ThumbnailsType]: ThumbnailModel;
 };
 
-interface StatisticsModel {
+export interface StatisticsModel {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;
