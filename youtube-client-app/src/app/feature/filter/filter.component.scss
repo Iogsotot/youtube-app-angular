@@ -1,0 +1,19 @@
+.filter {
+  background-color: #c7e9f5;
+  text-align: center;
+
+  .filter-types {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+    .date,
+    .view,
+    .text {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+  }
+}

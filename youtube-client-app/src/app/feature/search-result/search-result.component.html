@@ -1,6 +1,6 @@
 <div class="search-result">
   <ng-container *ngIf="sortedCards">
-    <div *ngFor="let card of sortedCards">
+    <div *ngFor="let card of sortedCards" class="card-container">
       <app-card [card]="card"></app-card>
     </div>
   </ng-container>
