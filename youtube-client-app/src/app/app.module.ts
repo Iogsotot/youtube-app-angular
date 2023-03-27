@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -25,11 +25,7 @@ import { LoginComponent } from './feature/login/login.component';
     LogoComponent,
     LoginComponent,
   ],
-  imports: [
-    BrowserModule, 
-    AppRoutingModule, 
-    BrowserAnimationsModule, 
-    MaterialModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

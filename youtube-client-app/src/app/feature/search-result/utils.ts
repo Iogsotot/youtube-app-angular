@@ -50,3 +50,24 @@ export const sortCards = (
 
   return sortedArr;
 };
+
+export const sortCardsByWordOrSentence = (array: YoutubeResponseItemModel[], value: string) => {
+  const sortedArr: YoutubeResponseItemModel[] = [];
+
+  array.forEach((item) => {
+    const { snippet } = item;
+    const isFound =
+      snippet.title.includes(value) ||
+      snippet.description.includes(value) ||
+      snippet.channelTitle.includes(value) ||
+      snippet.tags.includes(value) ||
+      snippet.localized.title.includes(value) ||
+      snippet.localized.description.includes(value);
+
+    if (isFound) {
+      sortedArr.push(item);
+    }
+  });
+
+  return sortedArr;
+};

@@ -23,8 +23,8 @@
     </button>
   </div>
 
-  <span>by word or sentence
-    <input type="text" ngModel [value]="sortValue" (ngModelChange)="onWordSort($event)" name="sortValue" />
+  <span>by word or sentence:
+    <input type="text" ngModel [value]="filterByWord" (ngModelChange)="handleInputFilterChange($event)" />
   </span>
 
 

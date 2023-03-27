@@ -7,35 +7,40 @@ import { SortFieldEnum, SortTypeEnum } from 'src/app/models/sortResult.model';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent {
-  // By clicking on the Settings button, the Filtering criteria block should be toggled
-  // It should be possible to sort search results by date or count of views
-  // Sorting should work both in the direction of decreasing values and in the direction of increasing values
-  // Using a pipe, filter search results by value that a user types in the input
-
   SortTypeEnum = SortTypeEnum;
 
   SortFieldEnum = SortFieldEnum;
 
-  sortValue = 'tag?';
+  filterByWord = '';
 
-  onWordSort(e: Event) {
-    console.log(this.sortValue, e);
+  handleInputFilterChange(value: string) {
+    this.filterByWord = value;
+    this.sort = {
+      type: SortTypeEnum.INPUT,
+      field: SortFieldEnum.TEXT,
+      value: this.filterByWord,
+    };
+    this.sortChange.emit(this.sort);
   }
 
-  sort: { type: SortTypeEnum; field: SortFieldEnum } = {
+  sort: { type: SortTypeEnum; field: SortFieldEnum; value?: string } = {
     type: SortTypeEnum.DESC,
     field: SortFieldEnum.VIEW,
   };
 
   @Output()
-  sortChange = new EventEmitter<{ type: SortTypeEnum; field: SortFieldEnum }>();
+  sortChange = new EventEmitter<{
+    type: SortTypeEnum;
+    field: SortFieldEnum;
+    value?: string;
+  }>();
 
   handleSortChange(type: SortTypeEnum, field: SortFieldEnum) {
     this.sort = {
       type,
       field,
+      value: this.filterByWord,
     };
-    console.log(this.sort);
     this.sortChange.emit(this.sort);
   }
 

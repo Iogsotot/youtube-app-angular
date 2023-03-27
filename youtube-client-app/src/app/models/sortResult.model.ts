@@ -1,6 +1,7 @@
 export enum SortTypeEnum {
   DESC = 'descending',
   ASC = 'ascending',
+  INPUT = 'input',
 }
 
 export enum SortFieldEnum {
@@ -8,4 +9,5 @@ export enum SortFieldEnum {
   DATE = 'date',
   LIKE = 'like',
   DISLIKE = 'dislike',
+  TEXT = 'text',
 }
