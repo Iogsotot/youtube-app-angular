@@ -8,13 +8,13 @@ import { SearchComponent } from './shared/search';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HeaderComponent, 
-    SearchComponent, 
+    AppComponent,
+    HeaderComponent,
+    SearchComponent,
     FooterComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
