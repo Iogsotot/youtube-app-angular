@@ -26,18 +26,18 @@
     text-align: center;
     margin: 0.8rem 0 1rem;
   }
-.content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  row-gap: 0.5rem;
-  height: inherit;
-  padding-bottom: 10px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    height: inherit;
+    padding-bottom: 10px;
 
-  &>* {
-    margin: auto;
+    & > * {
+      margin: auto;
+    }
   }
-}
   .card-info {
     display: flex;
     max-height: 200px;

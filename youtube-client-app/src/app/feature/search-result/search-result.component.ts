@@ -9,20 +9,25 @@ import { sortCards, sortCardsByWordOrSentence } from './utils';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnChanges {
-  @Input()
-  cards: YoutubeResponseItemModel[] | null = null;
+  @Input() cards: YoutubeResponseItemModel[] | null = null;
 
   sortedCards: YoutubeResponseItemModel[] | null = null;
 
-  @Input()
-  sort!: { type: SortTypeEnum; field: SortFieldEnum; value?: string };
+  @Input() sort!: { type: SortTypeEnum; field: SortFieldEnum; value?: string };
 
   ngOnChanges() {
     if (this.sort && this.cards) {
       if (this.sort.value) {
-        this.sortedCards = sortCardsByWordOrSentence(this.cards, this.sort.value);
+        this.sortedCards = sortCardsByWordOrSentence(
+          this.cards,
+          this.sort.value
+        );
       } else {
-        this.sortedCards = sortCards(this.cards, this.sort.type, this.sort.field);
+        this.sortedCards = sortCards(
+          this.cards,
+          this.sort.type,
+          this.sort.field
+        );
       }
     } else {
       this.sortedCards = this.cards;

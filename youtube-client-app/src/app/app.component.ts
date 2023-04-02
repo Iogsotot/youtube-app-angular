@@ -20,7 +20,11 @@ export class AppComponent {
 
   sort: any = null;
 
-  onSortChange(value: { type: SortTypeEnum; field: SortFieldEnum; value?: string }) {
+  onSortChange(value: {
+    type: SortTypeEnum;
+    field: SortFieldEnum;
+    value?: string;
+  }) {
     this.sort = value;
   }
 

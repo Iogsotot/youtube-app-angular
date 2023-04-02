@@ -6,7 +6,9 @@ export const getColorByDate = (inputDate: string | Date): CardColorEnum => {
 
   const oneDay = 1000 * 60 * 60 * 24;
 
-  const diffInDays = Math.ceil((currentDate.getTime() - targetDate.getTime()) / oneDay);
+  const diffInDays = Math.ceil(
+    (currentDate.getTime() - targetDate.getTime()) / oneDay
+  );
   const diffInMonths =
     (currentDate.getFullYear() - targetDate.getFullYear()) * 12 +
     (currentDate.getMonth() - targetDate.getMonth());

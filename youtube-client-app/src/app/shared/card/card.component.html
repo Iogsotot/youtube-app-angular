@@ -2,23 +2,26 @@
   <div class="image" [style.backgroundImage]="'url(' + bgImageUrl + ')'"></div>
   <mat-card-content class="content">
     <div class="card-info">
-      <div class="card-info_item"><mat-icon>visibility</mat-icon>
-        <div> {{ card?.statistics?.viewCount }} </div>
+      <div class="card-info_item">
+        <mat-icon>visibility</mat-icon>
+        <div>{{ card?.statistics?.viewCount }}</div>
       </div>
-      <div class="card-info_item"><mat-icon>favorite</mat-icon>
-        <div> {{ card?.statistics?.likeCount }} </div>
+      <div class="card-info_item">
+        <mat-icon>favorite</mat-icon>
+        <div>{{ card?.statistics?.likeCount }}</div>
       </div>
-      <div class="card-info_item"><mat-icon>heart_broken</mat-icon>
-        <div> {{ card?.statistics?.dislikeCount}} </div>
+      <div class="card-info_item">
+        <mat-icon>heart_broken</mat-icon>
+        <div>{{ card?.statistics?.dislikeCount }}</div>
       </div>
-      <div class="card-info_item"><mat-icon>forum</mat-icon>
-        <div> {{ card?.statistics?.commentCount }} </div>
+      <div class="card-info_item">
+        <mat-icon>forum</mat-icon>
+        <div>{{ card?.statistics?.commentCount }}</div>
       </div>
     </div>
 
-    <div class="title"> {{ card?.snippet?.title }}</div>
-    <button  mat-raised-button color="primary" >More...</button>
-
+    <div class="title">{{ card?.snippet?.title }}</div>
+    <button mat-raised-button color="primary">More...</button>
   </mat-card-content>
-  <mat-card-footer class="colored-mark" [ngStyle]="{'background-color': color}"></mat-card-footer>
+  <mat-card-footer class="colored-mark" [ngStyle]="{ 'background-color': color }"></mat-card-footer>
 </mat-card>

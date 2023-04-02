@@ -25,7 +25,13 @@ import { LoginComponent } from './feature/login/login.component';
     LogoComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
