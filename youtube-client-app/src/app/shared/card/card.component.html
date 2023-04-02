@@ -1,7 +1,6 @@
 <mat-card class="card">
+  <div class="image" [style.backgroundImage]="'url(' + bgImageUrl + ')'"></div>
   <mat-card-content class="content">
-    <img src={{card?.snippet?.thumbnails?.standard?.url}} alt="thumbnails" srcset="" width="360px">
-
     <div class="card-info">
       <div class="card-info_item"><mat-icon>visibility</mat-icon>
         <div> {{ card?.statistics?.viewCount }} </div>

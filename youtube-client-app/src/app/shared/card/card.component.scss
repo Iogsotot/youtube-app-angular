@@ -4,14 +4,22 @@
   height: 430px;
   align-items: center;
 
+  border-radius: 5px;
+  overflow: hidden;
+
   .colored-mark {
     margin: auto 0 0;
     height: 0.5rem;
     width: 100%;
   }
 
-  img {
-    max-width: inherit;
+  .image {
+    width: 100%;
+    aspect-ratio: 4/9;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0.3rem;
   }
 
   .title {

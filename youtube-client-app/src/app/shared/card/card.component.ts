@@ -13,8 +13,11 @@ export class CardComponent implements OnInit {
 
   @Input()
   card!: YoutubeResponseItemModel;
-
+  
+  bgImageUrl!: string;
+  
   ngOnInit() {
+    this.bgImageUrl = this.card?.snippet?.thumbnails?.standard?.url;
     this.color =
       this.card && this.card.snippet.publishedAt
         ? getColorByDate(this.card.snippet.publishedAt)
