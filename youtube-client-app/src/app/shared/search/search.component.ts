@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import {
   YoutubeResponseItemModel,
   YoutubeResponseModel,
-} from '../../models/youtube.model';
+} from '../../feature/youtube/models/youtube.model';
 import * as mockResponse from '../../../mocks/response.json';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SortFieldModel } from './models/sortResult.model';
-import { YoutubeResponseItemModel } from './models/youtube.model';
+import { SortFieldModel } from './feature/youtube/models/sortResult.model';
+import { YoutubeResponseItemModel } from './feature/youtube/models/youtube.model';
 
 @Component({
   selector: 'app-root',

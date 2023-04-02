@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { YoutubeResponseItemModel } from '../../models/youtube.model';
+import { YoutubeResponseItemModel } from '../../feature/youtube/models/youtube.model';
 
 @Component({
   selector: 'app-header',

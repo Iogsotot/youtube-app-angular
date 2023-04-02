@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CardColorEnum } from 'src/app/shared/card/cardColor.models';
-import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
+import { YoutubeResponseItemModel } from 'src/app/feature/youtube/models/youtube.model';
 import { getColorByDate } from './utils';
 
 @Component({
