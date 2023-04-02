@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SortFieldModel } from './models/sortResult.model';
+import { YoutubeResponseItemModel } from './models/youtube.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'youtube-client-app';
+  isFilterOpen: boolean = false;
+
+  testIsOpen: boolean = false;
+
+  hasSearchResult: boolean = false;
+
+  youtubeItems: YoutubeResponseItemModel[] | null = null;
+
+  sort?: SortFieldModel;
+
+  readonly title: string = 'youtube-client-app';
+
+  onSortChange(value: SortFieldModel): void {
+    this.sort = value;
+  }
+
+  onFilterOpenChange(value: boolean): void {
+    this.isFilterOpen = value;
+  }
+
+  onSearchResultChange(value: YoutubeResponseItemModel[] | null): void {
+    this.youtubeItems = value;
+  }
 }

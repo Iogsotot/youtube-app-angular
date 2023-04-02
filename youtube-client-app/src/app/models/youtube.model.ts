@@ -1,8 +1,8 @@
-export interface YoutubeModel {
+export interface YoutubeResponseModel {
   kind: string;
   etag: string;
   pageInfo: PageInfoModel;
-  items: ItemModel[];
+  items: YoutubeResponseItemModel[];
 }
 
 interface PageInfoModel {
@@ -10,7 +10,7 @@ interface PageInfoModel {
   resultsPerPage: number;
 }
 
-interface ItemModel {
+export interface YoutubeResponseItemModel {
   kind: string;
   etag: string;
   id: string;
@@ -19,7 +19,7 @@ interface ItemModel {
 }
 
 interface SnippetModel {
-  publishedAt: Date;
+  publishedAt: Date | string;
   channelId: string;
   title: string;
   description: string;
@@ -55,7 +55,7 @@ type ThumbnailsModel = {
   [key in ThumbnailsType]: ThumbnailModel;
 };
 
-interface StatisticsModel {
+export interface StatisticsModel {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;

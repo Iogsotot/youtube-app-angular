@@ -1,0 +1,26 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+  grid-template-areas: ". logo search filter-btn login .";
+  grid-gap: 5px;
+  align-items: center;
+
+  padding: 20px 10px;
+  background-color: #c7e9f5;
+
+  &_logo {
+    grid-area: logo;
+    justify-self: end;
+  }
+
+  &_search {
+    grid-area: search;
+  }
+  .filter-button {
+    grid-area: filter-btn;
+  }
+
+  &_login {
+    grid-area: login;
+  }
+}

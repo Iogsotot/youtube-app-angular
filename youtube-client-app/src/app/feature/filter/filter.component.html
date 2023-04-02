@@ -1,0 +1,34 @@
+<div *ngIf="isOpen" class="filter">
+  Sorting by:
+
+  <div class="filter-types">
+    <div class="date">
+      Date:
+      <button color="primary" mat-icon-button aria-label="ascending sort by view"
+        (click)="handleSortChange(SortTypeEnum.ASC, SortFieldEnum.DATE)">
+        <mat-icon>arrow_drop_up</mat-icon>
+      </button>
+      <button color="primary" mat-icon-button aria-label="descending sort by view"
+        (click)="handleSortChange(SortTypeEnum.DESC, SortFieldEnum.DATE)">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div class="view">
+      Count of views:
+      <button color="primary" mat-icon-button aria-label="ascending sort by view"
+        (click)="handleSortChange(SortTypeEnum.ASC, SortFieldEnum.VIEW)">
+        <mat-icon>arrow_drop_up</mat-icon>
+      </button>
+      <button color="primary" mat-icon-button aria-label="descending sort by view"
+        (click)="handleSortChange(SortTypeEnum.DESC, SortFieldEnum.VIEW)">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div class="text">
+      By word or sentence:
+      <input type="text" ngModel [value]="filterByWord" (ngModelChange)="handleInputFilterChange($event)" />
+    </div>
+  </div>
+</div>

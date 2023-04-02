@@ -1,0 +1,53 @@
+.card {
+  flex: 1 1 0;
+  width: 380px;
+  height: 430px;
+  align-items: center;
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  .colored-mark {
+    margin: auto 0 0;
+    height: 0.5rem;
+    width: 100%;
+  }
+
+  .image {
+    width: 100%;
+    aspect-ratio: 4/9;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .title {
+    text-align: center;
+    margin: 0.8rem 0 1rem;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    height: inherit;
+    padding-bottom: 10px;
+
+    & > * {
+      margin: auto;
+    }
+  }
+  .card-info {
+    display: flex;
+    max-height: 200px;
+
+    &_item {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 5px;
+      margin-right: 1rem;
+    }
+  }
+}
