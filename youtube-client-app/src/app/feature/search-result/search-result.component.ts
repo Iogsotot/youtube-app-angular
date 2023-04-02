@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { SortFieldEnum, SortTypeEnum } from 'src/app/models/sortResult.model';
-import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
+import { SortFieldModel } from '../../models/sortResult.model';
+import { YoutubeResponseItemModel } from '../../models/youtube.model';
 import { sortCards, sortCardsByWordOrSentence } from './utils';
 
 @Component({
@@ -11,9 +11,9 @@ import { sortCards, sortCardsByWordOrSentence } from './utils';
 export class SearchResultComponent implements OnChanges {
   @Input() cards: YoutubeResponseItemModel[] | null = null;
 
-  sortedCards: YoutubeResponseItemModel[] | null = null;
+  @Input() sort?: SortFieldModel;
 
-  @Input() sort!: { type: SortTypeEnum; field: SortFieldEnum; value?: string };
+  sortedCards: YoutubeResponseItemModel[] | null = null;
 
   ngOnChanges() {
     if (this.sort && this.cards) {

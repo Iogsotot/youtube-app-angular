@@ -1,5 +1,5 @@
-import { SortTypeEnum, SortFieldEnum } from 'src/app/models/sortResult.model';
-import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
+import { SortTypeEnum, SortFieldEnum } from '../../models/sortResult.model';
+import { YoutubeResponseItemModel } from '../../models/youtube.model';
 
 export const sortCards = (
   array: YoutubeResponseItemModel[],
@@ -33,20 +33,20 @@ export const sortCards = (
         return sortedArr.sort((a, b) => {
           const dateA: Date = new Date(a.snippet.publishedAt);
           const dateB: Date = new Date(b.snippet.publishedAt);
-          return dateA.getTime() - dateB.getTime();
+          return dateB.getTime() - dateA.getTime();
         });
       case SortTypeEnum.DESC:
         return sortedArr.sort((a, b) => {
           const dateA: Date = new Date(a.snippet.publishedAt);
           const dateB: Date = new Date(b.snippet.publishedAt);
-          return dateB.getTime() - dateA.getTime();
+          return dateA.getTime() - dateB.getTime();
         });
 
       default:
         return sortedArr.sort((a, b) => {
           const dateA: Date = new Date(a.snippet.publishedAt);
           const dateB: Date = new Date(b.snippet.publishedAt);
-          return dateA.getTime() - dateB.getTime();
+          return dateB.getTime() - dateA.getTime();
         });
     }
   }
@@ -57,10 +57,8 @@ export const sortCards = (
 export const sortCardsByWordOrSentence = (
   array: YoutubeResponseItemModel[],
   value: string
-) => {
-  const sortedArr: YoutubeResponseItemModel[] = [];
-
-  array.forEach((item) => {
+): YoutubeResponseItemModel[] | [] =>
+  array.filter((item) => {
     const { snippet } = item;
     const isFound =
       snippet.title.includes(value) ||
@@ -70,10 +68,5 @@ export const sortCardsByWordOrSentence = (
       snippet.localized.title.includes(value) ||
       snippet.localized.description.includes(value);
 
-    if (isFound) {
-      sortedArr.push(item);
-    }
+    return isFound;
   });
-
-  return sortedArr;
-};

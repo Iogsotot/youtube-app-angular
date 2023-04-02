@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import {
   YoutubeResponseItemModel,
   YoutubeResponseModel,
-} from 'src/app/models/youtube.model';
+} from '../../models/youtube.model';
 import * as mockResponse from '../../../mocks/response.json';
 
 @Component({
@@ -11,15 +11,17 @@ import * as mockResponse from '../../../mocks/response.json';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+  @Output() searchResultChange: EventEmitter<
+    YoutubeResponseItemModel[] | null
+  > = new EventEmitter<YoutubeResponseItemModel[] | null>();
+
   response: YoutubeResponseModel = mockResponse;
 
   youtubeData: YoutubeResponseModel | null = null;
 
-  hasSearchResult = false;
+  hasSearchResult: boolean = false;
 
-  @Output() searchResultChange = new EventEmitter<YoutubeResponseItemModel[] | null>();
-
-  getYoutubeData(event: Event) {
+  getYoutubeData(event: Event): void {
     event.preventDefault();
     this.youtubeData = this.response;
 

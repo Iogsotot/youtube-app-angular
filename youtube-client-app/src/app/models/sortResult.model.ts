@@ -11,3 +11,9 @@ export enum SortFieldEnum {
   DISLIKE = 'dislike',
   TEXT = 'text',
 }
+
+export interface SortFieldModel {
+  type: SortTypeEnum;
+  field: SortFieldEnum;
+  value?: string;
+}

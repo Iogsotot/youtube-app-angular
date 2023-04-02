@@ -1,19 +1,41 @@
 {
   "defaultSeverity": "error",
-  "extends": ["codelyzer"],
+  "extends": [
+    "codelyzer"
+  ],
   "jsRules": {},
   "rules": {
-    "align": [true, "parameters", "arguments", "statements"],
-    "ban": [true, ["describe", "only"]],
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements"
+    ],
+    "ban": [
+      true,
+      [
+        "describe",
+        "only"
+      ]
+    ],
     "class-name": true,
-    "comment-format": [true, "check-space"],
+    "comment-format": [
+      true,
+      "check-space"
+    ],
     "curly": true,
     "eofline": true,
     "forin": true,
-    "indent": [true, "spaces"],
+    "indent": [
+      true,
+      "spaces"
+    ],
     "jsdoc-format": true,
     "label-position": true,
-    "max-line-length": [true, 110],
+    "max-line-length": [
+      true,
+      110
+    ],
     "member-access": true,
     "member-ordering": [
       true,
@@ -37,9 +59,19 @@
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,
-    "no-consecutive-blank-lines": [true, 1],
-    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
-    "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
+    "no-consecutive-blank-lines": [
+      true,
+      1
+    ],
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-inferrable-types": false,
     "no-construct": true,
     "no-parameter-properties": false,
     "no-debugger": true,
@@ -63,9 +95,16 @@
       "check-else",
       "check-whitespace"
     ],
-    "quotemark": [true, "single", "avoid-escape"],
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "switch-default": true,
     "trailing-comma": [
       true,
@@ -73,7 +112,10 @@
         "singleline": "never"
       }
     ],
-    "triple-equals": [true, "allow-null-check"],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
     "typedef": [
       true,
       "call-signature",

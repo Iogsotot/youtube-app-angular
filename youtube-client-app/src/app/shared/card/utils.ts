@@ -1,4 +1,4 @@
-import { CardColorEnum } from 'src/app/models/cardColor.models';
+import { CardColorEnum } from './cardColor.models';
 
 export const getColorByDate = (inputDate: string | Date): CardColorEnum => {
   const currentDate: Date = new Date();

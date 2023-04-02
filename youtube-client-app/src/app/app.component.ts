@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SortFieldEnum, SortTypeEnum } from './models/sortResult.model';
+import { SortFieldModel } from './models/sortResult.model';
 import { YoutubeResponseItemModel } from './models/youtube.model';
 
 @Component({
@@ -8,31 +8,27 @@ import { YoutubeResponseItemModel } from './models/youtube.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'youtube-client-app';
+  isFilterOpen: boolean = false;
 
-  isFilterOpen = false;
+  testIsOpen: boolean = false;
 
-  testIsOpen = false;
-
-  hasSearchResult = false;
+  hasSearchResult: boolean = false;
 
   youtubeItems: YoutubeResponseItemModel[] | null = null;
 
-  sort: any = null;
+  sort?: SortFieldModel;
 
-  onSortChange(value: {
-    type: SortTypeEnum;
-    field: SortFieldEnum;
-    value?: string;
-  }) {
+  readonly title: string = 'youtube-client-app';
+
+  onSortChange(value: SortFieldModel): void {
     this.sort = value;
   }
 
-  onFilterOpenChange(value: boolean) {
+  onFilterOpenChange(value: boolean): void {
     this.isFilterOpen = value;
   }
 
-  onSearchResultChange(value: YoutubeResponseItemModel[] | null) {
+  onSearchResultChange(value: YoutubeResponseItemModel[] | null): void {
     this.youtubeItems = value;
   }
 }

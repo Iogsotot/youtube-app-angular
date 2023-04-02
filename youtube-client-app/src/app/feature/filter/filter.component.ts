@@ -1,5 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SortFieldEnum, SortTypeEnum } from 'src/app/models/sortResult.model';
+import {
+  SortFieldEnum,
+  SortFieldModel,
+  SortTypeEnum,
+} from '../../models/sortResult.model';
 
 @Component({
   selector: 'app-filter',
@@ -7,13 +11,23 @@ import { SortFieldEnum, SortTypeEnum } from 'src/app/models/sortResult.model';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent {
+  @Input() isOpen: boolean = false;
+
+  @Output() sortChange: EventEmitter<SortFieldModel> =
+    new EventEmitter<SortFieldModel>();
+
   SortTypeEnum = SortTypeEnum;
 
   SortFieldEnum = SortFieldEnum;
 
-  filterByWord = '';
+  filterByWord: string = '';
 
-  handleInputFilterChange(value: string) {
+  sort: SortFieldModel = {
+    type: SortTypeEnum.DESC,
+    field: SortFieldEnum.VIEW,
+  };
+
+  handleInputFilterChange(value: string): void {
     this.filterByWord = value;
     this.sort = {
       type: SortTypeEnum.INPUT,
@@ -23,19 +37,7 @@ export class FilterComponent {
     this.sortChange.emit(this.sort);
   }
 
-  sort: { type: SortTypeEnum; field: SortFieldEnum; value?: string } = {
-    type: SortTypeEnum.DESC,
-    field: SortFieldEnum.VIEW,
-  };
-
-  @Output()
-  sortChange = new EventEmitter<{
-    type: SortTypeEnum;
-    field: SortFieldEnum;
-    value?: string;
-  }>();
-
-  handleSortChange(type: SortTypeEnum, field: SortFieldEnum) {
+  handleSortChange(type: SortTypeEnum, field: SortFieldEnum): void {
     this.sort = {
       type,
       field,
@@ -43,7 +45,4 @@ export class FilterComponent {
     };
     this.sortChange.emit(this.sort);
   }
-
-  @Input()
-  isOpen: boolean = false;
 }

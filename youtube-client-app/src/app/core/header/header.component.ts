@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
+import { YoutubeResponseItemModel } from '../../models/youtube.model';
 
 @Component({
   selector: 'app-header',
@@ -7,27 +7,27 @@ import { YoutubeResponseItemModel } from 'src/app/models/youtube.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isFilterOpen = false;
+  @Input() hasSearchResult: boolean = false;
 
-  testIsOpen = false;
+  @Output() filterOpenChange: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
+
+  @Output() searchResultChange: EventEmitter<
+    YoutubeResponseItemModel[] | null
+  > = new EventEmitter<YoutubeResponseItemModel[] | null>();
+
+  isFilterOpen: boolean = false;
+
+  testIsOpen: boolean = false;
 
   searchResult: YoutubeResponseItemModel[] | null = null;
 
-  @Output()
-  filterOpenChange = new EventEmitter<boolean>();
-
-  @Output()
-  searchResultChange = new EventEmitter<YoutubeResponseItemModel[] | null>();
-
-  @Input()
-  hasSearchResult: boolean = false;
-
-  toggleFilter() {
+  toggleFilter(): void {
     this.isFilterOpen = !this.isFilterOpen;
     this.filterOpenChange.emit(this.isFilterOpen);
   }
 
-  onSearchResultChange(value: YoutubeResponseItemModel[] | null) {
+  onSearchResultChange(value: YoutubeResponseItemModel[] | null): void {
     this.searchResult = value;
     this.searchResultChange.emit(this.searchResult);
   }
