@@ -1,6 +1,11 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
   "overrides": [
     {
       "files": ["*.ts"],
@@ -12,7 +17,9 @@
         "prettier"
       ],
       "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.json",
+        "ecmaVersion": 2020,
+        "sourceType": "module"
       },
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -37,7 +44,12 @@
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
+      "rules": {
+        "no-debugger": "off",
+        "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "no-console": 0
+      }
     }
   ]
 }
