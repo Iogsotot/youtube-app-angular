@@ -1,5 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { YoutubeResponseItemModel } from '../../feature/youtube/models/youtube.model';
+import { FilterService } from '../../feature/youtube/services/filter.service';
 
 @Component({
   selector: 'app-header',
@@ -16,15 +17,21 @@ export class HeaderComponent {
     YoutubeResponseItemModel[] | null
   > = new EventEmitter<YoutubeResponseItemModel[] | null>();
 
-  isFilterOpen: boolean = false;
+  // isFilterOpen: boolean = false;
 
   testIsOpen: boolean = false;
 
   searchResult: YoutubeResponseItemModel[] | null = null;
 
-  toggleFilter(): void {
-    this.isFilterOpen = !this.isFilterOpen;
-    this.filterOpenChange.emit(this.isFilterOpen);
+  constructor(private filterService: FilterService) {}
+
+  // toggleFilter(): void {
+  //   this.isFilterOpen = !this.isFilterOpen;
+  //   this.filterOpenChange.emit(this.isFilterOpen);
+  // }
+
+  filterToggle() {
+    this.filterService.toggle()
   }
 
   onSearchResultChange(value: YoutubeResponseItemModel[] | null): void {
