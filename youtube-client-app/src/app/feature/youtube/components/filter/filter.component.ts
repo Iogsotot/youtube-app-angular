@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { SortFieldEnum, SortFieldModel, SortTypeEnum } from '../../models/sortResult.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SortFieldEnum, SortTypeEnum } from '../../models/sortResult.model';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -7,18 +8,10 @@ import { FilterService } from '../../services/filter.service';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription = new Subscription();
+
   isOpen!: boolean;
-
-  constructor(private filterService: FilterService) {}
-
-  ngOnInit(): void {
-    this.filterService.getState().subscribe((value: boolean) => {
-      this.isOpen = value;
-    });
-  }
-
-  @Output() sortChange: EventEmitter<SortFieldModel> = new EventEmitter<SortFieldModel>();
 
   SortTypeEnum = SortTypeEnum;
 
@@ -26,28 +19,34 @@ export class FilterComponent implements OnInit {
 
   filterByWord: string = '';
 
-  sort: SortFieldModel = {
-    type: SortTypeEnum.DESC,
-    field: SortFieldEnum.VIEW,
-  };
+  constructor(private filterService: FilterService) {}
+
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.filterService.getState().subscribe((value: boolean) => {
+        this.isOpen = value;
+      })
+    );
+  }
 
   handleInputFilterChange(value: string): void {
     this.filterByWord = value;
-    this.sort = {
+    this.filterService.setSortConfig({
       type: SortTypeEnum.INPUT,
       field: SortFieldEnum.TEXT,
       value: this.filterByWord,
-    };
-    this.sortChange.emit(this.sort);
+    });
   }
 
   handleSortChange(type: SortTypeEnum, field: SortFieldEnum): void {
-    this.sort = {
+    this.filterService.setSortConfig({
       type,
       field,
       value: this.filterByWord,
-    };
-    this.sortChange.emit(this.sort);
+    });
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }

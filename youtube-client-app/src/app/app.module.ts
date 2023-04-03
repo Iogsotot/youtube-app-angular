@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { YoutubeModule } from './feature/youtube/youtube.module';
+import { HomePageModule } from './pages/home-page/home-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +15,7 @@ import { YoutubeModule } from './feature/youtube/youtube.module';
     BrowserAnimationsModule,
     FormsModule,
     CoreModule,
-    YoutubeModule,
+    HomePageModule
   ],
   providers: [],
   bootstrap: [AppComponent],
