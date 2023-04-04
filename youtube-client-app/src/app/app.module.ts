@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomePageModule } from './pages/home-page/home-page.module';
+import { AuthModule } from './feature/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,8 @@ import { HomePageModule } from './pages/home-page/home-page.module';
     BrowserAnimationsModule,
     FormsModule,
     CoreModule,
-    HomePageModule
+    HomePageModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],

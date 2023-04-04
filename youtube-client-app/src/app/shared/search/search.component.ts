@@ -1,9 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import {
-  YoutubeResponseItemModel,
-  YoutubeResponseModel,
-} from '../../feature/youtube/models/youtube.model';
-import * as mockResponse from '../../../mocks/response.json';
+import { Component } from '@angular/core';
+import { SearchResultService } from '../../feature/youtube/services/search-result.service';
 
 @Component({
   selector: 'app-search',
@@ -11,21 +7,11 @@ import * as mockResponse from '../../../mocks/response.json';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
-  @Output() searchResultChange: EventEmitter<
-    YoutubeResponseItemModel[] | null
-  > = new EventEmitter<YoutubeResponseItemModel[] | null>();
-
-  response: YoutubeResponseModel = mockResponse;
-
-  youtubeData: YoutubeResponseModel | null = null;
-
-  hasSearchResult: boolean = false;
+  constructor(private searchResultService: SearchResultService) {}
 
   getYoutubeData(event: Event): void {
     event.preventDefault();
-    this.youtubeData = this.response;
-
-    this.hasSearchResult = true;
-    this.searchResultChange.emit(this.youtubeData.items);
+    this.searchResultService.getCardsResponse();
+    this.searchResultService.getCards();
   }
 }

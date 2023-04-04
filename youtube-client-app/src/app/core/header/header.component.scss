@@ -1,12 +1,12 @@
 .header {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
-  grid-template-areas: ". logo search filter-btn login .";
+  grid-template-areas: ". logo search filter-btn login logout";
   grid-gap: 5px;
   align-items: center;
 
   padding: 20px 10px;
-  background-color: #c7e9f5;
+  background-color: cadetblue;
 
   &_logo {
     grid-area: logo;
@@ -22,5 +22,9 @@
 
   &_login {
     grid-area: login;
+  }
+
+  &_logout {
+    grid-area: logout;
   }
 }
