@@ -17,7 +17,7 @@ import { AuthModule } from './feature/auth/auth.module';
     FormsModule,
     CoreModule,
     HomePageModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

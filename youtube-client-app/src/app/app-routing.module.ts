@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardDetailedComponent } from './feature/youtube/components/card-detailed/card-detailed.component';
@@ -10,25 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'home', component: HomePageComponent, canActivate: [AuthGuard] },
-  { path: 'card/:id', component: CardDetailedComponent },
-
-  // {
-  //   path: 'lazy-loaded',
-  //   loadChildren: () => import('./feature/youtube/youtube.module').then((m) => m.YoutubeModule),
-  // },
-  // {
-  //   path: 'admin',
-  //   component: AdminPageComponent,
-  //   canActivate: [AuthGuard],
-  // },
-  // {
-  //   path: 'parent',
-  //   component: TabsComponent,
-  //   children: [
-  //     { path: 'left', component: LeftTabComponent },
-  //     { path: 'right', component: RightTabComponent },
-  //   ],
-  // },
+  { path: 'card/:id', component: CardDetailedComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] },
 ];
