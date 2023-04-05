@@ -9,13 +9,18 @@ import { getColorByDate } from './utils';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() card!: YoutubeResponseItemModel;
+  @Input() isDetailed: boolean = false;
+
+  @Input() card?: YoutubeResponseItemModel;
+
+  id?: string;
 
   color: CardColorEnum = CardColorEnum.BLUE;
 
-  bgImageUrl!: string;
+  bgImageUrl?: string;
 
   ngOnInit() {
+    this.id = this.card?.id;
     this.bgImageUrl = this.card?.snippet?.thumbnails?.standard?.url;
     this.color = this.card?.snippet?.publishedAt
       ? getColorByDate(this.card.snippet.publishedAt)

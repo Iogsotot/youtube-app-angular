@@ -1,27 +1,70 @@
-<mat-card class="card">
-  <div class="image" [style.backgroundImage]="'url(' + bgImageUrl + ')'"></div>
-  <mat-card-content class="content">
-    <div class="card-info">
-      <div class="card-info_item">
-        <mat-icon>visibility</mat-icon>
-        <div>{{ card?.statistics?.viewCount }}</div>
-      </div>
-      <div class="card-info_item">
-        <mat-icon>favorite</mat-icon>
-        <div>{{ card?.statistics?.likeCount }}</div>
-      </div>
-      <div class="card-info_item">
-        <mat-icon>heart_broken</mat-icon>
-        <div>{{ card?.statistics?.dislikeCount }}</div>
-      </div>
-      <div class="card-info_item">
-        <mat-icon>forum</mat-icon>
-        <div>{{ card?.statistics?.commentCount }}</div>
-      </div>
-    </div>
+<mat-card [class.card]="!isDetailed" [class.card-horizontal]="isDetailed" *ngIf="card">
 
-    <div class="title">{{ card?.snippet?.title }}</div>
-    <button mat-raised-button color="primary">More...</button>
-  </mat-card-content>
+  <ng-container *ngIf="!isDetailed">
+    <div class="image" [style.backgroundImage]="'url(' + bgImageUrl + ')'"></div>
+    <mat-card-content class="content">
+      <div class="card-info">
+        <div class="card-info_item">
+          <mat-icon>visibility</mat-icon>
+          <div>{{ card.statistics?.viewCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>favorite</mat-icon>
+          <div>{{ card.statistics?.likeCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>heart_broken</mat-icon>
+          <div>{{ card.statistics?.dislikeCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>forum</mat-icon>
+          <div>{{ card.statistics?.commentCount }}</div>
+        </div>
+      </div>
+
+      <div class="title">{{ card.snippet?.title }}</div>
+      <a mat-raised-button color="primary" [routerLink]="['/card', card.id]">More...</a>
+    </mat-card-content>
+  </ng-container>
+
+  <ng-container *ngIf="isDetailed">
+
+    <div class="image" [style.backgroundImage]="'url(' + bgImageUrl + ')'">
+      <button mat-mini-fab color="primary" class="back-button" routerLink='/home'>
+        <mat-icon>reply</mat-icon>
+      </button>
+    </div>
+    <mat-card-content class="content">
+
+      <div class="title-container">
+        <div class="title">{{ card.snippet?.title }}</div>
+        <div class="date">{{card.snippet?.publishedAt | date:'d MMMM yyyy'}}</div>
+      </div>
+      <div class="description">{{ card.snippet?.description }}</div>
+
+      <div class="card-info">
+        <div class="card-info_item">
+          <mat-icon>visibility</mat-icon>
+          <div>{{ card.statistics?.viewCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>favorite</mat-icon>
+          <div>{{ card.statistics?.likeCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>heart_broken</mat-icon>
+          <div>{{ card.statistics?.dislikeCount }}</div>
+        </div>
+        <div class="card-info_item">
+          <mat-icon>forum</mat-icon>
+          <div>{{ card.statistics?.commentCount }}</div>
+        </div>
+      </div>
+      <div class="colored-mark" [ngStyle]="{ 'background-color': color }"></div>
+    </mat-card-content>
+  </ng-container>
+
+
+
   <mat-card-footer class="colored-mark" [ngStyle]="{ 'background-color': color }"></mat-card-footer>
 </mat-card>
