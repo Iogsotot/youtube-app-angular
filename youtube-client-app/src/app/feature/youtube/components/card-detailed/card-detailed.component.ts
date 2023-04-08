@@ -25,7 +25,7 @@ export class CardDetailedComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  private loadData() {
+  private loadData(): void {
     this.searchResultService.getData().subscribe((data) => {
       this.cards = data;
       this.card = this.cards?.find((card) => card.id === this.cardId);

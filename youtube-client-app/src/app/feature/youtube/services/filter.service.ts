@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { SortFieldModel, SortTypeEnum, SortFieldEnum } from '../models/sortResult.model';
 
 @Injectable({
@@ -17,21 +17,21 @@ export class FilterService {
 
   private sortSubject: Subject<SortFieldModel> = new Subject<SortFieldModel>();
 
-  public toggle() {
+  public toggle(): void {
     this.isOpen = !this.isOpen;
     this.isOpenSubject.next(this.isOpen);
   }
 
-  public getState() {
+  public getState(): Observable<boolean> {
     return this.isOpenSubject.asObservable();
   }
 
-  public setSortConfig(value: SortFieldModel) {
+  public setSortConfig(value: SortFieldModel): void {
     this.sortConfig = value;
     this.sortSubject.next(this.sortConfig);
   }
 
-  public getSortConfig() {
+  public getSortConfig(): Observable<SortFieldModel> {
     return this.sortSubject.asObservable();
   }
 }

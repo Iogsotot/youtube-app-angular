@@ -19,7 +19,7 @@ export class CardComponent implements OnInit {
 
   bgImageUrl?: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.id = this.card?.id;
     this.bgImageUrl = this.card?.snippet?.thumbnails?.standard?.url;
     this.color = this.card?.snippet?.publishedAt

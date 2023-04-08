@@ -1,5 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { YoutubeResponseItemModel, YoutubeResponseModel } from '../models/youtube.model';
 import * as mockResponse from '../../../../mocks/response.json';
 
@@ -17,11 +18,11 @@ export class SearchResultService {
     YoutubeResponseItemModel[]
   >();
 
-  private setCards(value: YoutubeResponseItemModel[]) {
+  private setCards(value: YoutubeResponseItemModel[]): void {
     this.cardsSubject.next(value);
   }
 
-  public getCardsResponse() {
+  public getCardsResponse(): Observable<YoutubeResponseModel> {
     const response: YoutubeResponseModel = mockResponse;
 
     this.cardsResponse = response;
@@ -31,10 +32,15 @@ export class SearchResultService {
     return this.cardsResponseSubject.asObservable();
   }
 
-  public getCards() {
+  public getCards(): Observable<YoutubeResponseItemModel[]> {
     const response: YoutubeResponseModel = mockResponse;
     this.cards = response.items;
     this.cardsSubject.next(response.items);
     return this.cardsSubject.asObservable();
+  }
+
+  getData(): Observable<YoutubeResponseItemModel[]> {
+    const data = mockResponse;
+    return of(data.items);
   }
 }
