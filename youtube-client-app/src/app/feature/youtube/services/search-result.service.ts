@@ -22,7 +22,7 @@ export class SearchResultService {
     this.cardsSubject.next(value);
   }
 
-  public getCardsResponse(): Observable<YoutubeResponseModel> {
+  getCardsResponse(): Observable<YoutubeResponseModel> {
     const response: YoutubeResponseModel = mockResponse;
 
     this.cardsResponse = response;
@@ -32,7 +32,7 @@ export class SearchResultService {
     return this.cardsResponseSubject.asObservable();
   }
 
-  public getCards(): Observable<YoutubeResponseItemModel[]> {
+  getCards(): Observable<YoutubeResponseItemModel[]> {
     const response: YoutubeResponseModel = mockResponse;
     this.cards = response.items;
     this.cardsSubject.next(response.items);

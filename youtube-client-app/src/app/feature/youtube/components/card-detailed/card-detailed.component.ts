@@ -12,11 +12,11 @@ import { SearchResultService } from '../../services/search-result.service';
 export class CardDetailedComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
-  public cardId: string | null = null;
+  cardId: string | null = null;
 
   private cards?: YoutubeResponseItemModel[] | undefined;
 
-  public card?: YoutubeResponseItemModel;
+  card?: YoutubeResponseItemModel;
 
   constructor(public route: ActivatedRoute, private searchResultService: SearchResultService) {}
 

@@ -10,7 +10,7 @@ import { LocalStorageService } from '../../core/services/local-storage.service';
 export class LogoutComponent {
   constructor(private localStorageService: LocalStorageService, private router: Router) {}
 
-  public onClick(): void {
+  onClick(): void {
     this.localStorageService.removeItem('token');
     this.router.navigate(['/login']);
   }

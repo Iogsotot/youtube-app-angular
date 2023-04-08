@@ -16,18 +16,18 @@ export class LocalStorageService {
     });
   }
 
-  public setItem(key: string, value: string): void {
+  setItem(key: string, value: string): void {
     localStorage.setItem(key, value);
   }
 
-  public removeItem(key: string): void {
+  removeItem(key: string): void {
     localStorage.removeItem(key);
   }
 
   getStorageChanges(): Observable<string | null> {
     return this.storageSub.asObservable();
   }
-  
+
   get(key: string): string | null {
     const value = localStorage.getItem(key);
     return value || null;

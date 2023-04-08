@@ -17,21 +17,21 @@ export class FilterService {
 
   private sortSubject: Subject<SortFieldModel> = new Subject<SortFieldModel>();
 
-  public toggle(): void {
+  toggle(): void {
     this.isOpen = !this.isOpen;
     this.isOpenSubject.next(this.isOpen);
   }
 
-  public getState(): Observable<boolean> {
+  getState(): Observable<boolean> {
     return this.isOpenSubject.asObservable();
   }
 
-  public setSortConfig(value: SortFieldModel): void {
+  setSortConfig(value: SortFieldModel): void {
     this.sortConfig = value;
     this.sortSubject.next(this.sortConfig);
   }
 
-  public getSortConfig(): Observable<SortFieldModel> {
+  getSortConfig(): Observable<SortFieldModel> {
     return this.sortSubject.asObservable();
   }
 }
