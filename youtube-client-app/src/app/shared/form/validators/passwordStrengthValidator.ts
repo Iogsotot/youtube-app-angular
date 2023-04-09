@@ -18,14 +18,3 @@ export function passwordStrengthValidator(
 
   return isValid ? null : { passwordStrength: true };
 }
-
-// TODO: del for PR
-// export function asyncPasswordStrengthValidator(
-//   control: AbstractControl
-// ): Promise<ValidationErrors | null> {
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   return new Promise((resolve, reject) => {
-//     const result = passwordStrengthValidator(control);
-//     resolve(result);
-//   });
-// }
