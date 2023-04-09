@@ -38,7 +38,8 @@
             "style": "kebab-case"
           }
         ],
-        "import/prefer-default-export": 0
+        "import/prefer-default-export": 0,
+        "@typescript-eslint/explicit-function-return-type": "warn"
       }
     },
     {
