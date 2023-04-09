@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { AuthModule } from './feature/auth/auth.module';
+import { AdminPageModule } from './pages/admin-page/admin-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { AuthModule } from './feature/auth/auth.module';
     CoreModule,
     HomePageModule,
     AuthModule,
+    AdminPageModule
   ],
   providers: [],
   bootstrap: [AppComponent],
