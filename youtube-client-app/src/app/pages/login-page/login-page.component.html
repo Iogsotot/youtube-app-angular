@@ -20,7 +20,8 @@
           <input matInput placeholder="Password" formControlName="password" type="password">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" class="submit-button" type="submit">Login</button>
+        <button mat-raised-button color="primary" class="submit-button" type="submit"
+          [disabled]="!loginForm.valid">Login</button>
       </form>
     </mat-card-content>
   </mat-card>
