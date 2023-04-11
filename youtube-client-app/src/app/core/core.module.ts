@@ -11,11 +11,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from '../shared/logo/logo.component';
 import { SearchComponent } from '../shared/search/search.component';
-import { LoginComponent } from '../feature/login/login.component';
-import { LogoutComponent } from '../feature/logout/logout.component';
+import { AvatarComponent } from '../shared/avatar/avatar.component';
+import { LoginLogoutComponent } from '../feature/login-logout/login-logout.component';
 
 @NgModule({
-  declarations: [HeaderComponent, LogoComponent, SearchComponent, LoginComponent, LogoutComponent],
+  declarations: [
+    HeaderComponent,
+    LogoComponent,
+    SearchComponent,
+    AvatarComponent,
+    LoginLogoutComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,

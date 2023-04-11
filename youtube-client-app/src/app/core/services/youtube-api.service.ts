@@ -20,9 +20,6 @@ export class YoutubeApiService {
 
   private readonly baseAdditionalStatUrl = 'https://www.googleapis.com/youtube/v3/videos';
 
-  // I don't know how to fix TS error in this case: "Property 'apiKey' does not exist on type '{}'. private readonly apiKey: string = environment.apiKey;"
-  // Typing didn't help 
-  // @ts-ignore
   private readonly apiKey: string = environment.apiKey;
 
   constructor(private http: HttpClient) {}

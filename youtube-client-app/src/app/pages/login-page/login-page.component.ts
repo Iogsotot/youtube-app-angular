@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LocalStorageService } from '../../core/services/local-storage.service';
 import { passwordStrengthValidator } from '../../shared/form/validators/passwordStrengthValidator';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -17,11 +16,7 @@ export class LoginPageComponent implements OnInit {
     'and includes a combination of uppercase and lowercase letters, numbers, ' +
     'and special characters - !@#?$%^&*№';
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -31,12 +26,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.localStorageService.setItem('userData', JSON.stringify(this.loginForm.value));
-    this.localStorageService.setItem(
-      'token',
-      `anyTokenFor: ${JSON.stringify(this.loginForm.value.login).replaceAll('"', '')}`
-    );
-    this.router.navigate(['/home']);
+    this.authService.login(this.loginForm.value.login, this.loginForm.value.password);
   }
 
   getErrorMessage(type: string): string {

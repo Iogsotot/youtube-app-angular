@@ -1,0 +1,14 @@
+<ng-container *ngIf="loggedIn$ | async">
+  <div class="logout">
+    <button color="primary" aria-label="logout button" mat-mini-fab (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</ng-container>
+<ng-container *ngIf="(loggedIn$ | async) === false">
+  <div class="login">
+    <button color="primary" aria-label="login button" mat-mini-fab (click)="login()">
+      <mat-icon>login</mat-icon>
+    </button>
+  </div>
+</ng-container>

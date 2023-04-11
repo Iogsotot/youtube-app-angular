@@ -1,12 +1,16 @@
 .header {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
-  grid-template-areas: ". logo search filter-btn login logout";
-  grid-gap: 5px;
+  grid-template-areas: ". logo search filter-btn avatar login-logout";
   align-items: center;
 
   padding: 20px 10px;
   background-color: cadetblue;
+
+  &--welcome {
+    grid-template-areas: ". logo welcome-string welcome-string welcome-string login-logout";
+    grid-gap: 5px;
+  }
 
   &_logo {
     grid-area: logo;
@@ -20,11 +24,22 @@
     grid-area: filter-btn;
   }
 
-  &_login {
-    grid-area: login;
+  &_avatar {
+    grid-area: avatar;
   }
 
   &_logout {
-    grid-area: logout;
+    grid-area: login-logout;
+  }
+
+  &_login {
+    grid-area: login-logout;
+  }
+
+  & .welcome-string {
+    grid-area: welcome-string;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1.5rem;
   }
 }

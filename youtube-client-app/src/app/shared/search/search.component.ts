@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { SearchResultService } from '../../feature/youtube/services/search-result.service';
-import { YoutubeResponseItemModel } from '../../feature/youtube/models/youtube.model';
 import { YoutubeApiService } from '../../core/services/youtube-api.service';
+import { CardModel } from '../card/models/card.models';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +18,7 @@ export class SearchComponent implements OnDestroy {
 
   searchForm: FormGroup;
 
-  searchResults: YoutubeResponseItemModel[] = [];
+  searchResults: CardModel[] = [];
 
   constructor(
     private youtubeApiService: YoutubeApiService,
@@ -37,7 +37,8 @@ export class SearchComponent implements OnDestroy {
         switchMap((query: string) => this.youtubeApiService.searchVideos(query))
       )
       .subscribe((response) => {
-        this.searchResults = response.response.items;
+        this.searchResultService.setCards(response);
+        this.searchResults = response;
       });
   }
 
@@ -45,7 +46,6 @@ export class SearchComponent implements OnDestroy {
     const inputValue = this.searchForm.value.search;
     if (inputValue.length >= 3) {
       this.searchSubject.next(inputValue);
-
     }
   }
 

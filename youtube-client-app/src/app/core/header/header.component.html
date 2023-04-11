@@ -1,9 +1,14 @@
-<div class="header">
+<div class="header" [ngClass]="{'header--welcome':(loggedIn$ | async) === false}">
   <app-logo class="header_logo"></app-logo>
-  <app-search class="header_search"></app-search>
-  <button mat-mini-fab color="primary" class="filter-button" (click)="filterToggle()">
-    <mat-icon>tune</mat-icon>
-  </button>
-  <app-login class="header_login"></app-login>
-  <app-logout class="header_logout"></app-logout>
+  <ng-container *ngIf="loggedIn$ | async">
+    <app-search class="header_search"></app-search>
+    <button mat-mini-fab color="primary" class="filter-button" (click)="filterToggle()">
+      <mat-icon>tune</mat-icon>
+    </button>
+    <app-avatar class="header_avatar"></app-avatar>
+  </ng-container>
+  <ng-container *ngIf="(loggedIn$ | async) === false">
+    <div class="welcome-string">Unleash the power of YouTube, log in now and start exploring!</div>
+  </ng-container>
+  <app-login-logout class="header_logout"></app-login-logout>
 </div>

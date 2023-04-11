@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FilterService } from '../../feature/youtube/services/filter.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,9 @@ import { FilterService } from '../../feature/youtube/services/filter.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private filterService: FilterService) {}
+  loggedIn$ = this.authService.isLoggedIn;
+
+  constructor(private filterService: FilterService, private authService: AuthService) {}
 
   filterToggle(): void {
     this.filterService.toggle();
