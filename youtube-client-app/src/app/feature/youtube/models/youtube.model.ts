@@ -11,30 +11,39 @@ interface PageInfoModel {
 }
 
 export interface YoutubeResponseItemModel {
-  kind: string;
   etag: string;
-  id: string;
+  id: { kind: string; videoId: string };
+  kind: string;
   snippet: SnippetModel;
-  statistics: StatisticsModel;
+}
+
+export interface YoutubeResponseItemWithStatsModel extends YoutubeResponseItemModel {
+  statistics: VideoStatisticsResponseModel;
+}
+
+export interface YoutubeResponseItemWithCommentStatsModel extends YoutubeResponseItemModel {
+  statistics: { commentCount: string };
+}
+
+export interface VideoStatisticsResponseModel {
+  id: string;
+  dateCreated: Date | string;
+  likes: number;
+  dislikes: number;
+  rating: number;
+  viewCount: number;
+  deleted: boolean;
 }
 
 interface SnippetModel {
-  publishedAt: Date | string;
   channelId: string;
-  title: string;
-  description: string;
-  thumbnails: ThumbnailsModel;
   channelTitle: string;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: string;
-  localized: LocalizedModel;
-  defaultAudioLanguage: string;
-}
-
-interface LocalizedModel {
-  title: string;
   description: string;
+  liveBroadcastContent: string;
+  publishTime: Date | string;
+  publishedAt: Date | string;
+  thumbnails: ThumbnailsModel;
+  title: string;
 }
 
 interface ThumbnailModel {
@@ -51,7 +60,7 @@ const enum ThumbnailsType {
   Maxres = 'maxres',
 }
 
-type ThumbnailsModel = {
+export type ThumbnailsModel = {
   [key in ThumbnailsType]: ThumbnailModel;
 };
 

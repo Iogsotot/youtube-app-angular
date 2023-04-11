@@ -1,8 +1,8 @@
 <div class="search">
-  <form>
-    <input type="text" class="input" />
-    <button mat-raised-button color="primary" (click)="getYoutubeData($event)">
-      Search
-    </button>
+  <form [formGroup]="searchForm">
+    <mat-form-field class="form-field">
+      <mat-label>Search</mat-label>
+      <input class="input" type="text" matInput formControlName="search" (input)="onInput()">
+    </mat-form-field>
   </form>
 </div>

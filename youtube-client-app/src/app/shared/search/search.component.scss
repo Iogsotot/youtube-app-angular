@@ -1,7 +1,10 @@
 .search {
+  .mat-mdc-form-field,
   .input {
     width: 100%;
+    margin-bottom: -16px;
   }
+
   form {
     display: flex;
   }

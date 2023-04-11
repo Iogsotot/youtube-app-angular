@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SortFieldModel } from '../../models/sortResult.model';
-import { YoutubeResponseItemModel } from '../../models/youtube.model';
 import { sortCards, sortCardsByWordOrSentence } from './utils';
 import { FilterService } from '../../services/filter.service';
 import { SearchResultService } from '../../services/search-result.service';
+import { ICard } from '../../../../shared/card/models/card.models';
 
 @Component({
   selector: 'app-search-result',
@@ -14,11 +14,11 @@ import { SearchResultService } from '../../services/search-result.service';
 export class SearchResultComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
-  cards?: YoutubeResponseItemModel[];
+  cards?: ICard[];
 
   sort!: SortFieldModel;
 
-  sortedCards?: YoutubeResponseItemModel[];
+  sortedCards?: ICard[];
 
   constructor(
     private filterService: FilterService,
@@ -42,7 +42,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.searchResultService.getCards().subscribe((value: YoutubeResponseItemModel[]) => {
+      this.searchResultService.getCards().subscribe((value: ICard[]) => {
         this.cards = value;
         this.sortedCards = this.cards;
       })

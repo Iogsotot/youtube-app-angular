@@ -1,46 +1,37 @@
-/* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
-import { YoutubeResponseItemModel, YoutubeResponseModel } from '../models/youtube.model';
-import * as mockResponse from '../../../../mocks/response.json';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  YoutubeResponseItemWithStatsModel,
+} from '../models/youtube.model';
+import { ICard } from '../../../shared/card/models/card.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchResultService {
-  private cardsResponse?: YoutubeResponseModel;
+  private cardsSubject: BehaviorSubject<ICard[]> = new BehaviorSubject<ICard[]>([]);
 
-  private cards?: YoutubeResponseItemModel[];
+  setCards(videoWithStats: YoutubeResponseItemWithStatsModel[]): void {
+    const preparedValues: ICard[] = videoWithStats.map((item) => ({
+      statistics: {
+        viewCount: item.statistics.viewCount.toString(),
+        likeCount: item.statistics.likes.toString(),
+        dislikeCount: item.statistics.dislikes.toString(),
+        commentCount: 'null',
+        // commentCount: item.statistics.comments,
+      },
+      videoId: item.id.videoId,
+      title: item.snippet.title,
+      channelTitle: item.snippet.channelTitle,
+      publishedAt: item.snippet.publishedAt,
+      description: item.snippet.description,
+      thumbnails: item.snippet.thumbnails,
+    }));
 
-  private cardsResponseSubject: Subject<YoutubeResponseModel> = new Subject<YoutubeResponseModel>();
-
-  private cardsSubject: Subject<YoutubeResponseItemModel[]> = new Subject<
-    YoutubeResponseItemModel[]
-  >();
-
-  private setCards(value: YoutubeResponseItemModel[]): void {
-    this.cardsSubject.next(value);
+    this.cardsSubject.next(preparedValues);
   }
 
-  getCardsResponse(): Observable<YoutubeResponseModel> {
-    const response: YoutubeResponseModel = mockResponse;
-
-    this.cardsResponse = response;
-    this.cardsResponseSubject.next(response);
-    this.cardsSubject.next(this.cardsResponse?.items);
-
-    return this.cardsResponseSubject.asObservable();
-  }
-
-  getCards(): Observable<YoutubeResponseItemModel[]> {
-    const response: YoutubeResponseModel = mockResponse;
-    this.cards = response.items;
-    this.cardsSubject.next(response.items);
+  getCards(): Observable<ICard[]> {
     return this.cardsSubject.asObservable();
-  }
-
-  getData(): Observable<YoutubeResponseItemModel[]> {
-    const data = mockResponse;
-    return of(data.items);
   }
 }

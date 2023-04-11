@@ -1,22 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { YoutubeResponseItemModel } from '../../models/youtube.model';
 import { SearchResultService } from '../../services/search-result.service';
+import { ICard } from '../../../../shared/card/models/card.models';
 
 @Component({
   selector: 'app-card-detailed',
   templateUrl: './card-detailed.component.html',
   styleUrls: ['./card-detailed.component.scss'],
 })
-export class CardDetailedComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription = new Subscription();
-
+export class CardDetailedComponent implements OnInit {
   cardId: string | null = null;
 
-  private cards?: YoutubeResponseItemModel[] | undefined;
+  private cards?: ICard[] | undefined;
 
-  card?: YoutubeResponseItemModel;
+  card?: ICard;
 
   constructor(public route: ActivatedRoute, private searchResultService: SearchResultService) {}
 
@@ -26,13 +23,9 @@ export class CardDetailedComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
-    this.searchResultService.getData().subscribe((data) => {
-      this.cards = data;
-      this.card = this.cards?.find((card) => card.id === this.cardId);
+    this.searchResultService.getCards().subscribe((cards) => {
+      this.cards = cards;
+      this.card = this.cards?.find((card) => card.videoId === this.cardId);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 }

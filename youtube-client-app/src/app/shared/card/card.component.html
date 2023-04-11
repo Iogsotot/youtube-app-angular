@@ -22,8 +22,8 @@
         </div>
       </div>
 
-      <div class="title">{{ card.snippet?.title }}</div>
-      <a mat-raised-button color="primary" [routerLink]="['/card', card.id]">More...</a>
+      <div class="title">{{ card?.title }}</div>
+      <a mat-raised-button color="primary" [routerLink]="['/card', card.videoId]">More...</a>
     </mat-card-content>
   </ng-container>
 
@@ -37,10 +37,10 @@
     <mat-card-content class="content">
 
       <div class="title-container">
-        <div class="title">{{ card.snippet?.title }}</div>
-        <div class="date">{{card.snippet?.publishedAt | date:'d MMMM yyyy'}}</div>
+        <div class="title">{{ card?.title }}</div>
+        <div class="date">{{card?.publishedAt | date:'d MMMM yyyy'}}</div>
       </div>
-      <div class="description">{{ card.snippet?.description }}</div>
+      <div class="description">{{ card?.description }}</div>
 
       <div class="card-info">
         <div class="card-info_item">
