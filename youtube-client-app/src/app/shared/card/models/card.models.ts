@@ -1,7 +1,7 @@
 import { ThumbnailsModel } from '../../../feature/youtube/models/youtube.model';
 
-export interface ICard {
-  statistics: ICardStatistics;
+export interface CardModel {
+  statistics: CardStatisticsModel;
   videoId: string;
   title: string;
   channelTitle: string;
@@ -10,7 +10,7 @@ export interface ICard {
   thumbnails: ThumbnailsModel;
 }
 
-export interface ICardStatistics {
+export interface CardStatisticsModel {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;

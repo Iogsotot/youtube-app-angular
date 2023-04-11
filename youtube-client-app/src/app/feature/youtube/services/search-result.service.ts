@@ -1,37 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  YoutubeResponseItemWithStatsModel,
-} from '../models/youtube.model';
-import { ICard } from '../../../shared/card/models/card.models';
+import { YoutubeResponseItemWithStatsModel } from '../models/youtube.model';
+import { CardModel } from '../../../shared/card/models/card.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchResultService {
-  private cardsSubject: BehaviorSubject<ICard[]> = new BehaviorSubject<ICard[]>([]);
+  private cardsSubject: BehaviorSubject<CardModel[]> = new BehaviorSubject<CardModel[]>([]);
 
-  setCards(videoWithStats: YoutubeResponseItemWithStatsModel[]): void {
-    const preparedValues: ICard[] = videoWithStats.map((item) => ({
-      statistics: {
-        viewCount: item.statistics.viewCount.toString(),
-        likeCount: item.statistics.likes.toString(),
-        dislikeCount: item.statistics.dislikes.toString(),
-        commentCount: 'null',
-        // commentCount: item.statistics.comments,
-      },
-      videoId: item.id.videoId,
-      title: item.snippet.title,
-      channelTitle: item.snippet.channelTitle,
-      publishedAt: item.snippet.publishedAt,
-      description: item.snippet.description,
-      thumbnails: item.snippet.thumbnails,
-    }));
-
-    this.cardsSubject.next(preparedValues);
+  setCards(videoWithStats: CardModel[]): void {
+    this.cardsSubject.next(videoWithStats);
   }
 
-  getCards(): Observable<ICard[]> {
+  getCards(): Observable<CardModel[]> {
     return this.cardsSubject.asObservable();
   }
 }

@@ -30,10 +30,18 @@ export interface VideoStatisticsResponseModel {
   dateCreated: Date | string;
   likes: number;
   dislikes: number;
-  rating: number;
   viewCount: number;
-  deleted: boolean;
 }
+
+export interface VideoCommentStatisticsModel {
+  items: VideoItemStatisticsModel[];
+}
+
+export interface VideoItemStatisticsModel {
+  id: string;
+  statistics: { viewCount: string; likeCount: string; favoriteCount: string; commentCount: string };
+}
+
 
 interface SnippetModel {
   channelId: string;
@@ -63,11 +71,3 @@ const enum ThumbnailsType {
 export type ThumbnailsModel = {
   [key in ThumbnailsType]: ThumbnailModel;
 };
-
-export interface StatisticsModel {
-  viewCount: string;
-  likeCount: string;
-  dislikeCount: string;
-  favoriteCount: string;
-  commentCount: string;
-}

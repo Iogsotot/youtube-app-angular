@@ -1,10 +1,10 @@
- import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SortFieldModel } from '../../models/sortResult.model';
 import { sortCards, sortCardsByWordOrSentence } from './utils';
 import { FilterService } from '../../services/filter.service';
 import { SearchResultService } from '../../services/search-result.service';
-import { ICard } from '../../../../shared/card/models/card.models';
+import { CardModel } from '../../../../shared/card/models/card.models';
 
 @Component({
   selector: 'app-search-result',
@@ -14,11 +14,11 @@ import { ICard } from '../../../../shared/card/models/card.models';
 export class SearchResultComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
-  cards?: ICard[];
+  cards?: CardModel[];
 
   sort!: SortFieldModel;
 
-  sortedCards?: ICard[];
+  sortedCards?: CardModel[];
 
   constructor(
     private filterService: FilterService,
@@ -42,7 +42,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.searchResultService.getCards().subscribe((value: ICard[]) => {
+      this.searchResultService.getCards().subscribe((value: CardModel[]) => {
         this.cards = value;
         this.sortedCards = this.cards;
       })

@@ -1,11 +1,11 @@
-import { ICard } from '../../../../shared/card/models/card.models';
+import { CardModel } from '../../../../shared/card/models/card.models';
 import { SortTypeEnum, SortFieldEnum } from '../../models/sortResult.model';
 
 export const sortCards = (
-  array: ICard[],
+  array: CardModel[],
   sortType: SortTypeEnum,
   sortField: SortFieldEnum
-): ICard[] => {
+): CardModel[] => {
   const sortedArr = [...array];
   if (sortField === SortFieldEnum.VIEW) {
     switch (sortType) {
@@ -51,7 +51,7 @@ export const sortCards = (
   return sortedArr;
 };
 
-export const sortCardsByWordOrSentence = (array: ICard[], value: string): ICard[] | [] =>
+export const sortCardsByWordOrSentence = (array: CardModel[], value: string): CardModel[] | [] =>
   array.filter((item) => {
     const isFound =
       item.title.includes(value) ||

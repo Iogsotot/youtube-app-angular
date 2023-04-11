@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchResultService } from '../../services/search-result.service';
-import { ICard } from '../../../../shared/card/models/card.models';
+import { CardModel } from '../../../../shared/card/models/card.models';
 
 @Component({
   selector: 'app-card-detailed',
@@ -11,9 +11,9 @@ import { ICard } from '../../../../shared/card/models/card.models';
 export class CardDetailedComponent implements OnInit {
   cardId: string | null = null;
 
-  private cards?: ICard[] | undefined;
+  private cards?: CardModel[] | undefined;
 
-  card?: ICard;
+  card?: CardModel;
 
   constructor(public route: ActivatedRoute, private searchResultService: SearchResultService) {}
 

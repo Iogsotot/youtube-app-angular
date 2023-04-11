@@ -1,30 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import {
+  VideoCommentStatisticsModel,
   VideoStatisticsResponseModel,
   YoutubeResponseModel,
 } from '../../feature/youtube/models/youtube.model';
-import { SearchResultService } from '../../feature/youtube/services/search-result.service';
+import { CardModel } from '../../shared/card/models/card.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeApiService {
-  private baseSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
+  private readonly baseSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
 
-  private baseStatUrl = 'https://returnyoutubedislikeapi.com/votes';
+  private readonly baseStatUrl = 'https://returnyoutubedislikeapi.com/votes';
 
-  private baseAdditionalStatUrl = 'https://www.googleapis.com/youtube/v3/videos';
+  private readonly baseAdditionalStatUrl = 'https://www.googleapis.com/youtube/v3/videos';
 
-  private apiKey = 'AIzaSyBJAes57AsWNoYXE2SzOuHnBX6zrQFFssg';
+  // I don't know how to fix TS error in this case: "Property 'apiKey' does not exist on type '{}'. private readonly apiKey: string = environment.apiKey;"
+  // Typing didn't help 
+  // @ts-ignore
+  private readonly apiKey: string = environment.apiKey;
 
-  constructor(private http: HttpClient, private searchResultService: SearchResultService) {}
+  constructor(private http: HttpClient) {}
 
-  searchVideos(
-    query: string
-  ): Observable<{ response: YoutubeResponseModel; statResponses: VideoStatisticsResponseModel[] }> {
+  searchVideos(query: string): Observable<CardModel[]> {
     const params = {
       key: this.apiKey,
       type: 'video',
@@ -33,46 +36,44 @@ export class YoutubeApiService {
       q: query,
     };
 
-      return this.http.get<YoutubeResponseModel>(this.baseSearchUrl, { params }).pipe(
-        switchMap((response) => {
-          const ids = response.items.map((item) => item.id.videoId);
-          const statRequests = ids.map((id) => this.searchVideoStatistics(id));
-          return forkJoin(statRequests).pipe(map((statResponses) => ({ response, statResponses })));
-        }),
-        tap(({ response, statResponses }) => {
-          const itemsWithStats = response.items.map((item, index) => ({
-            ...item,
-            statistics: statResponses[index],
-          }));
-          this.searchResultService.setCards(itemsWithStats);
-        })
-      );
-    }
+    return this.http.get<YoutubeResponseModel>(this.baseSearchUrl, { params }).pipe(
+      switchMap((videos) => {
+        const ids = videos.items.map((item) => item.id.videoId);
+        const statRequests = ids.map((id) => this.searchVideoStatistics(id));
+        const commentStatRequest = this.searchVideoCommentStatistics(ids.join(','));
 
-  //   return this.http.get<YoutubeResponseModel>(this.baseSearchUrl, { params }).pipe(
-  //     switchMap((searchResponse) => {
-  //       const ids = searchResponse.items.map((item) => item.id.videoId);
-  //       const statRequests = ids.map((id) => this.searchVideoStatistics(id));
-  //       const additionalStatRequests = ids.map((id) => this.searchVideoAdditionalStatistics(id));
+        return forkJoin([...statRequests, commentStatRequest]).pipe(
+          map((responses) => {
+            const statResponses = responses.slice(0, -1) as VideoStatisticsResponseModel[];
+            const commentStatResponse = responses.slice(-1)[0] as VideoCommentStatisticsModel;
 
-  //       return forkJoin(statRequests, additionalStatRequests).pipe(
-  //         map(([statResponses, additionalStatResponses]) => ({
-  //           response: searchResponse,
-  //           statResponses,
-  //           additionalStatResponses,
-  //         }))
-  //       );
-  //     }),
-  //     tap(({ response, statResponses, additionalStatResponses }) => {
-  //       const itemsWithStats = response.items.map((item, index) => ({
-  //         ...item,
-  //         statistics: statResponses[index],
-  //         additionalStatistics: additionalStatResponses[index],
-  //       }));
-  //       this.searchResultService.setCards(itemsWithStats);
-  //     })
-  //   );
-  // }
+            const cards = videos.items.map((item, index) => {
+              const statistics = statResponses[index];
+              const commentStatistics = commentStatResponse.items.find(
+                (commentItem) => commentItem.id === ids[index]
+              )?.statistics;
+              const card: CardModel = {
+                statistics: {
+                  viewCount: statistics.viewCount.toString() ?? '0',
+                  likeCount: statistics.likes.toString() ?? '0',
+                  dislikeCount: statistics.dislikes.toString() ?? '0',
+                  commentCount: commentStatistics?.commentCount ?? '0',
+                },
+                videoId: item.id.videoId ?? '0',
+                title: item.snippet.title ?? '0',
+                channelTitle: item.snippet.channelTitle ?? '0',
+                publishedAt: item.snippet.publishedAt ?? '0',
+                description: item.snippet.description ?? '0',
+                thumbnails: item.snippet.thumbnails ?? '0',
+              };
+              return card;
+            });
+            return cards;
+          })
+        );
+      })
+    );
+  }
 
   searchVideoStatistics(videoId: string): Observable<VideoStatisticsResponseModel> {
     const params = {
@@ -81,25 +82,12 @@ export class YoutubeApiService {
     return this.http.get<VideoStatisticsResponseModel>(this.baseStatUrl, { params });
   }
 
-  searchVideoAdditionalStatistics(videoId: string): Observable<any> {
+  searchVideoCommentStatistics(videoId: string): Observable<VideoCommentStatisticsModel> {
     const params = {
       key: this.apiKey,
       id: videoId,
       part: 'snippet,statistics',
     };
-    return this.http.get<VideoStatisticsResponseModel>(this.baseAdditionalStatUrl, { params });
+    return this.http.get<VideoCommentStatisticsModel>(this.baseAdditionalStatUrl, { params });
   }
 }
-
-// https://returnyoutubedislikeapi.com/votes?videoId=Efy639fThyM
-// {
-//   id: "Efy639fThyM",
-//   dateCreated: "2022-01-22T15:33:41.238223Z",
-//   likes: 10,
-//   dislikes: 4,
-//   rating: 3.857142857142857,
-//   viewCount: 826,
-//   deleted: false
-//   }
-// general info
-// https://www.googleapis.com/youtube/v3/search?key=AIzaSyBJAes57AsWNoYXE2SzOuHnBX6zrQFFssg&type=video&part=snippet&maxResults=15&q=js
