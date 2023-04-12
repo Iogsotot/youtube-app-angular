@@ -9,7 +9,11 @@ import { LocalStorageService } from './local-storage.service';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router, private localStorageService: LocalStorageService) {}
+  constructor(private router: Router, private localStorageService: LocalStorageService) {
+    if (this.localStorageService.get('token')) {
+      this.loggedIn.next(true);
+    }
+  }
 
   get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
