@@ -26,7 +26,6 @@ export class YoutubeApiService {
 
   searchVideos(query: string): Observable<CardModel[]> {
     const params = {
-      key: this.apiKey,
       type: 'video',
       part: 'snippet',
       maxResults: '15',
@@ -81,7 +80,6 @@ export class YoutubeApiService {
 
   searchVideoCommentStatistics(videoId: string): Observable<VideoCommentStatisticsModel> {
     const params = {
-      key: this.apiKey,
       id: videoId,
       part: 'snippet,statistics',
     };
