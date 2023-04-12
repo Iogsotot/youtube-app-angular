@@ -13,14 +13,11 @@ export class CardComponent implements OnChanges {
 
   @Input() card?: CardModel;
 
-  id?: string;
-
   color: CardColorEnum = CardColorEnum.BLUE;
 
   bgImageUrl?: string;
 
   ngOnChanges(): void {
-    this.id = this.card?.videoId;
     this.bgImageUrl = this.card?.thumbnails?.high?.url;
     this.color = this.card?.publishedAt
       ? getColorByDate(this.card.publishedAt)

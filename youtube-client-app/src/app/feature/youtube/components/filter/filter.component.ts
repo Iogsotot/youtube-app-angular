@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SortFieldEnum, SortTypeEnum } from '../../models/sortResult.model';
 import { FilterService } from '../../services/filter.service';
@@ -8,7 +8,7 @@ import { FilterService } from '../../services/filter.service';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit {
   private subscriptions: Subscription = new Subscription();
 
   isOpen!: boolean;
@@ -44,9 +44,5 @@ export class FilterComponent implements OnInit, OnDestroy {
       field,
       value: this.filterByWord,
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 }

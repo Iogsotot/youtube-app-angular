@@ -47,6 +47,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
         this.sortedCards = this.cards;
       })
     );
+
   }
 
   ngOnDestroy(): void {

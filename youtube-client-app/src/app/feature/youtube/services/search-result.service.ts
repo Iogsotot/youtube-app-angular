@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { YoutubeResponseItemWithStatsModel } from '../models/youtube.model';
 import { CardModel } from '../../../shared/card/models/card.models';
 
 @Injectable({
