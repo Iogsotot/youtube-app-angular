@@ -9,7 +9,8 @@ import { CoreModule } from './core/core.module';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { AuthModule } from './feature/auth/auth.module';
 import { AdminPageModule } from './pages/admin-page/admin-page.module';
-import { ApiKeyInterceptor } from './apiKey.interceptor';
+import { ApiKeyInterceptor } from './core/interceptors/apiKey.interceptor';
+import { BaseUrlInterceptor } from './core/interceptors/base-url.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,10 @@ import { ApiKeyInterceptor } from './apiKey.interceptor';
     AdminPageModule,
     HttpClientModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,19 +8,16 @@ import {
   YoutubeResponseModel,
 } from '../../feature/youtube/models/youtube.model';
 import { CardModel } from '../../shared/card/models/card.models';
-import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeApiService {
-  private readonly baseSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
+  private readonly baseSearchUrl = 'search';
 
-  private readonly baseStatUrl = 'https://returnyoutubedislikeapi.com/votes';
+  private readonly baseStatUrl = 'stats';
 
-  private readonly baseAdditionalStatUrl = 'https://www.googleapis.com/youtube/v3/videos';
-
-  private readonly apiKey: string = environment.apiKey;
+  private readonly baseAdditionalStatUrl = 'comments';
 
   constructor(private http: HttpClient) {}
 
