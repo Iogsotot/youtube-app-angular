@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { getColorByDate } from './utils';
 import { CardModel } from './models/card.models';
 import { CardColorEnum } from './cardColor.models';
@@ -8,7 +8,7 @@ import { CardColorEnum } from './cardColor.models';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnChanges {
   @Input() isDetailed: boolean = false;
 
   @Input() card?: CardModel;
@@ -19,7 +19,7 @@ export class CardComponent implements OnInit {
 
   bgImageUrl?: string;
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.id = this.card?.videoId;
     this.bgImageUrl = this.card?.thumbnails?.high?.url;
     this.color = this.card?.publishedAt
