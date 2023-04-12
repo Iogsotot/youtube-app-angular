@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardColorEnum } from 'src/app/shared/card/cardColor.models';
 import { getColorByDate } from './utils';
 import { CardModel } from './models/card.models';
+import { CardColorEnum } from './cardColor.models';
 
 @Component({
   selector: 'app-card',
